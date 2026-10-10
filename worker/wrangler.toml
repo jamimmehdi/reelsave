@@ -1,0 +1,7 @@
+name = "reelsave"
+main = "worker.js"
+compatibility_date = "2024-09-01"
+
+# Optional: lock the API to your GitHub Pages origin, e.g.
+# [vars]
+# ALLOWED_ORIGIN = "https://yourname.github.io"

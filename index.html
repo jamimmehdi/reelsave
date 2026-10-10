@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reelsave</title>
+<meta name="description" content="Save public Instagram and Facebook reels.">
+<meta name="theme-color" content="#09080d" id="themeColor">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Reelsave">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<main id="app" data-state="home">
+  <header class="top">
+    <div class="logo"><span class="dot"></span>reelsave</div>
+    <div class="top-actions">
+      <button class="icon-btn" id="settingsBtn" aria-label="Settings"><i class="ti ti-adjustments-horizontal"></i></button>
+      <button class="sw" id="themeBtn" aria-label="Toggle theme"><i class="ti ti-moon"></i></button>
+    </div>
+  </header>
+
+  <section class="view view-home">
+    <div class="pill"><i class="ti ti-circle-check"></i>Public reels · no watermark</div>
+    <h1 class="big">Paste.<br>Tap.<br><span class="gt">Saved.</span></h1>
+
+    <div class="gb">
+      <label class="field">
+        <i class="ti ti-link"></i>
+        <input id="urlInput" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste a reel link">
+        <button class="pb" id="pasteBtn" type="button">Paste</button>
+      </label>
+    </div>
+    <button class="cta" id="getBtn" type="button"><i class="ti ti-sparkles"></i><span>Get video</span></button>
+    <p class="error" id="errorMsg" role="alert" hidden></p>
+
+    <div class="src">
+      <div><b class="ig"><i class="ti ti-brand-instagram"></i></b>Instagram</div>
+      <div><b class="fb"><i class="ti ti-brand-facebook"></i></b>Facebook</div>
+    </div>
+
+    <div class="lbl" id="recentLbl" hidden><span>Recent</span><button id="clearBtn" type="button">Clear</button></div>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="view view-result">
+    <div class="poster" id="poster">
+      <img id="thumb" alt="" referrerpolicy="no-referrer">
+      <video id="player" controls playsinline hidden></video>
+      <button class="play" id="playHint" type="button" aria-label="Preview"><i class="ti ti-player-play"></i></button>
+      <span class="ok" id="okBadge" hidden><i class="ti ti-check"></i>Ready</span>
+      <div class="ov" id="progressOv" hidden>
+        <div class="ring">
+          <svg width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="55" r="48" class="ring-bg"/><circle cx="55" cy="55" r="48" class="ring-fg" id="ringFg"/></svg>
+          <span id="pct">0%</span>
+        </div>
+        <div class="sm-light" id="sizeTxt"></div>
+      </div>
+    </div>
+    <div class="ttl" id="ttl">Reel</div>
+    <div class="sm" id="meta"></div>
+    <div class="tags" id="tags"></div>
+
+    <button class="cta" id="dlBtn" type="button"><i class="ti ti-download"></i><span>Download</span></button>
+    <div class="row2">
+      <button class="ghost" id="copyBtn" type="button"><i class="ti ti-copy"></i>Copy link</button>
+      <button class="ghost" id="newBtn" type="button"><i class="ti ti-arrow-back-up"></i>New reel</button>
+    </div>
+    <p class="error" id="errorMsg2" role="alert" hidden></p>
+  </section>
+
+  <p class="foot">Only download content you have the right to save.</p>
+</main>
+
+<div class="sheet-wrap" id="sheet" hidden>
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" role="dialog" aria-label="Settings">
+    <div class="grab"></div>
+    <h2>Settings</h2>
+    <label class="lbl-in">Backend URL</label>
+    <input id="apiInput" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://reelsave.yourname.workers.dev">
+    <p class="hint">The Cloudflare Worker that fetches the video. See the README for the 5 minute setup.</p>
+    <div class="row2">
+      <button class="ghost" id="testBtn" type="button"><i class="ti ti-plug-connected"></i>Test</button>
+      <button class="cta small" id="saveCfgBtn" type="button">Save</button>
+    </div>
+    <p class="hint" id="testMsg"></p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
